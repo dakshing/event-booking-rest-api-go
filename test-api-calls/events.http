@@ -19,3 +19,17 @@ Content-Type: application/json
     "location": "test",
     "datetime": "2024-06-30T15:04:05Z"
 }
+
+### Update Event
+PUT http://localhost:8080/events/7
+Content-Type: application/json
+
+{
+    "name": "updated test",
+    "description": "updated test",
+    "location": "updated test",
+    "datetime": "2024-07-01T10:00:00Z"
+}
+
+### Delete Event
+DELETE http://localhost:8080/events/7
