@@ -1,0 +1,23 @@
+version: '3.8'
+
+services:
+  postgres_db:
+    image: postgres:15-alpine
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: event_booking
+    
+    # Restart the container if it stops for any reason
+    restart: always
+
+    volumes:
+      # Map the named volume 'postgres_data' (defined below) to the database's default storage location
+      - postgres_data:/var/lib/postgresql/data
+      
+# Define the named volume that will store the data persistently outside of the container
+volumes:
+  postgres_data:
+    # This empty entry means Docker will manage the volume, ensuring persistence across container restarts

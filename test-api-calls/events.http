@@ -1,0 +1,16 @@
+// Use VS Code REST Client to send requests
+
+### 
+
+GET http://localhost:8080/events
+
+###
+
+POST http://localhost:8080/events
+Content-Type: application/json
+
+{
+    "name": "test",
+    "description": "test",
+    "location": "test"
+}
