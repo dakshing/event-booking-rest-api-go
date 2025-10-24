@@ -12,5 +12,6 @@ Content-Type: application/json
 {
     "name": "test",
     "description": "test",
-    "location": "test"
+    "location": "test",
+    "datetime": "2024-06-30T15:04:05Z"
 }
