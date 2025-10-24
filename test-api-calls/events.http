@@ -1,10 +1,14 @@
 // Use VS Code REST Client to send requests
 
-### 
+### Get All
 
 GET http://localhost:8080/events
 
-###
+### Get by ID
+
+GET http://localhost:8080/events/7
+
+### Create Event
 
 POST http://localhost:8080/events
 Content-Type: application/json
