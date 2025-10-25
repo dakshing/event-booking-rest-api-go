@@ -24,3 +24,4 @@ Short, practical notes and commands to remember while working on this project.
 ## Authorization and Authentication
 - Use `bcrypt` library for encryption. Passwords are hashed here using bcrypt.
 - Use `golang-jwt` to generate jwt tokens
+- create authentication layer as a middleware

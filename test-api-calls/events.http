@@ -33,4 +33,5 @@ Content-Type: application/json
 }
 
 ### Delete Event
-DELETE http://localhost:8080/events/7
+DELETE http://localhost:8080/events/2
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3R1c2VyMiIsImV4cCI6MTc2MTQxMjAxNiwidXNlcklkIjozfQ.6ZVgc4SV6s83uPdLcFCfdJs747AIXVbQeRxqALSKs2o

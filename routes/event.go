@@ -5,7 +5,6 @@ import (
 	"strconv"
 
 	"github.com/dakshing/event-booking-rest-api-go/models"
-	"github.com/dakshing/event-booking-rest-api-go/utils"
 	"github.com/gin-gonic/gin"
 )
 
@@ -35,26 +34,14 @@ func getEvent(c *gin.Context) {
 }
 
 func createEvent(c *gin.Context) {
-	token := c.GetHeader("Authorization")
-	if token == "" {
-		c.JSON(http.StatusUnauthorized, gin.H{"error": "Authorization token required"})
-		return
-	}
-
-	loggedInUser, err := utils.ValidateTokenStringAndGetUserID(token)
-	if err != nil {
-		c.JSON(http.StatusUnauthorized, gin.H{"error": err.Error()})
-	}
-
 	var newEvent models.Event
 	if err := c.ShouldBindJSON(&newEvent); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
-	newEvent.UserID = loggedInUser
+	newEvent.UserID = c.GetInt64("userID")
 
-	err = newEvent.Save()
-	if err != nil {
+	if err := newEvent.Save(); err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
 		return
 	}
@@ -102,5 +89,5 @@ func deleteEvent(c *gin.Context) {
 		return
 	}
 
-	c.Status(http.StatusNoContent)
+	c.JSON(http.StatusOK, gin.H{"message": "Deleted successfully"})
 }
