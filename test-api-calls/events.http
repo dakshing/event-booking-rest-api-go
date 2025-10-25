@@ -11,7 +11,7 @@ GET http://localhost:8080/events/7
 ### Create Event
 
 POST http://localhost:8080/events
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3R1c2VyMiIsImV4cCI6MTc2MTQxMjAxNiwidXNlcklkIjozfQ.6ZVgc4SV6s83uPdLcFCfdJs747AIXVbQeRxqALSKs2o
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3R1c2VyIiwiZXhwIjoxNzYxNDE1Mzk3LCJ1c2VySWQiOjh9.bvXrASIGfr5CSSpdzJ6lOTCJWpMcfF3iSwVAntg3SxA
 Content-Type: application/json
 
 {
@@ -22,8 +22,9 @@ Content-Type: application/json
 }
 
 ### Update Event
-PUT http://localhost:8080/events/7
+PUT http://localhost:8080/events/3
 Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3R1c2VyIiwiZXhwIjoxNzYxNDE1Mzk3LCJ1c2VySWQiOjh9.bvXrASIGfr5CSSpdzJ6lOTCJWpMcfF3iSwVAntg3SxA
 
 {
     "name": "updated test",
@@ -33,5 +34,5 @@ Content-Type: application/json
 }
 
 ### Delete Event
-DELETE http://localhost:8080/events/2
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3R1c2VyMiIsImV4cCI6MTc2MTQxMjAxNiwidXNlcklkIjozfQ.6ZVgc4SV6s83uPdLcFCfdJs747AIXVbQeRxqALSKs2o
+DELETE http://localhost:8080/events/3
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3R1c2VyIiwiZXhwIjoxNzYxNDE1Mzk3LCJ1c2VySWQiOjh9.bvXrASIGfr5CSSpdzJ6lOTCJWpMcfF3iSwVAntg3SxA
