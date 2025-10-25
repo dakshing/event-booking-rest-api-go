@@ -4,6 +4,7 @@ import (
 	"net/http"
 
 	"github.com/dakshing/event-booking-rest-api-go/models"
+	"github.com/dakshing/event-booking-rest-api-go/utils"
 	"github.com/gin-gonic/gin"
 )
 
@@ -37,5 +38,11 @@ func login(c *gin.Context) {
 		return
 	}
 
-	c.JSON(http.StatusOK, gin.H{"message": "Login successful"})
+	signedToken, err := utils.GenerateTokenString(loginUser.Username, loginUser.ID)
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
+		return
+	}
+
+	c.JSON(http.StatusOK, gin.H{"token": signedToken})
 }

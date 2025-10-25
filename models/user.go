@@ -39,9 +39,9 @@ func (u *User) Save() error {
 }
 
 func (u *User) AuthenticateCredentials() error {
-	query := "SELECT password FROM users WHERE username=$1"
+	query := "SELECT id, password FROM users WHERE username=$1"
 	var hashedPassword string
-	err := db.DB.QueryRow(query, u.Username).Scan(&hashedPassword)
+	err := db.DB.QueryRow(query, u.Username).Scan(&u.ID, &hashedPassword)
 
 	if err != nil {
 		return err
@@ -50,7 +50,7 @@ func (u *User) AuthenticateCredentials() error {
 	valid := utils.CheckPasswordHash(u.Password, hashedPassword)
 
 	if !valid {
-		return errors.New("Authentication failed. Invalid credentials")
+		return errors.New("authentication failed. invalid credentials")
 	}
 
 	return nil
