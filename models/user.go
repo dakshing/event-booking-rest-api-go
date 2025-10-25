@@ -1,6 +1,8 @@
 package models
 
 import (
+	"errors"
+
 	"github.com/dakshing/event-booking-rest-api-go/db"
 	"github.com/dakshing/event-booking-rest-api-go/utils"
 )
@@ -36,14 +38,20 @@ func (u *User) Save() error {
 	return err
 }
 
-func GetUserByUsername(username string) (*User, error) {
-	query := "SELECT * FROM users WHERE username=$1"
-	var u User
-	err := db.DB.QueryRow(query, username).Scan(&u.ID, &u.Username, &u.Password)
+func (u *User) AuthenticateCredentials() error {
+	query := "SELECT password FROM users WHERE username=$1"
+	var hashedPassword string
+	err := db.DB.QueryRow(query, u.Username).Scan(&hashedPassword)
 
 	if err != nil {
-		return nil, err
+		return err
 	}
 
-	return &u, nil
+	valid := utils.CheckPasswordHash(u.Password, hashedPassword)
+
+	if !valid {
+		return errors.New("Authentication failed. Invalid credentials")
+	}
+
+	return nil
 }
