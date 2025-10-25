@@ -1,6 +1,9 @@
 package models
 
-import "github.com/dakshing/event-booking-rest-api-go/db"
+import (
+	"github.com/dakshing/event-booking-rest-api-go/db"
+	"github.com/dakshing/event-booking-rest-api-go/utils"
+)
 
 type User struct {
 	ID       int64
@@ -20,7 +23,12 @@ func (u *User) Save() error {
 
 	defer stmt.Close()
 
-	err = stmt.QueryRow(u.Username, u.Password).Scan(&u.ID)
+	hashedPassword, err := utils.HashPassword(u.Password)
+	if err != nil {
+		return err
+	}
+
+	err = stmt.QueryRow(u.Username, hashedPassword).Scan(&u.ID)
 	if err != nil {
 		return err
 	}
